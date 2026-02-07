@@ -8,7 +8,10 @@
 body {
     background-color: #14140F;
     color: #fff;
-    padding: 30px 8px;
+    min-height: 100vh;
+    padding: 30px 8px 0px 8px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 h1 {
@@ -64,7 +67,7 @@ div.lista {
     padding: 20px 10px;
     display: flex;
     justify-content: center;
-    margin: 25px auto;
+    margin: 15px auto;
 }
 
 ul {
@@ -107,9 +110,6 @@ footer {
     background-color: #889C9B;
     color: #14140F;
     padding: 10px 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
 }
 
 footer p {

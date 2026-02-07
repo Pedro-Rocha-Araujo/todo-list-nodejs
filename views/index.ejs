@@ -1,20 +1,21 @@
 <%- include("header") -%>
-
-    <form action="/" method="post">
-        <div class="inputs">
-            <input id="input" type="text" name="novoItem">
-            <button type="submit" name="botao" value=<%= titulo %>>+</button>
+    <main>
+        <form action="/" method="post">
+            <div class="inputs">
+                <input id="input" type="text" name="novoItem">
+                <button type="submit" name="botao" value=<%= titulo %>>+</button>
+            </div>
+        </form>
+        <div class="lista">
+            <ul>
+                <% itens.map((_,i)=>{ %>
+                    <div class="item">
+                        <input type="checkbox">
+                        <li><%= _ %></li>
+                    </div>
+                    <hr>
+                <% }) %>
+            </ul>
         </div>
-    </form>
-    <div class="lista">
-        <ul>
-            <% itens.map((_,i)=>{ %>
-                <div class="item">
-                    <input type="checkbox">
-                    <li><%= _ %></li>
-                </div>
-                <hr>
-            <% }) %>
-        </ul>
-    </div>
+    </main>
 <%- include("footer") -%>
