@@ -21,15 +21,21 @@ app.post("/", (request, response)=>{
     let item = request.body.novoItem
     switch (request.body.botao) {
         case "Todo-List":
-            itens.push(item)
+            if(item !== ""){
+                itens.push(item)
+            }
             response.redirect("/")
             break;
         case "Trabalho":
-            itensTrabalho.push(item)
+            if(item !== ""){
+                itensTrabalho.push(item)
+            }
             response.redirect("/trabalho")
             break;
         case "Faculdade":
-            itensSobre.push(item)
+            if(item !== ""){
+                itensSobre.push(item)
+            }
             response.redirect("/faculdade")
             break
         default:
@@ -46,8 +52,10 @@ app.get("/trabalho", (request, response)=>{
 
 app.post("/trabalho", (request, response)=>{
     item = request.body.novoItem
-    itensTrabalho.push(item)
-    response.redirect("/trabalho")
+    if(item !== ""){
+        itensTrabalho.push(item)
+        response.redirect("/trabalho")
+    }
 })
 
 app.get("/faculdade", (request, response)=>{
