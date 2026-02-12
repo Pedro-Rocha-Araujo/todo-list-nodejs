@@ -10,3 +10,8 @@
 
 
 3- Digitar: node app.js
+
+## Funcionalidades
+* Adcionar itens às respectivas listas
+* Editar e deletar os itens adcionados
+* Alternar entre as listas Padrão, faculdade e trabalho
