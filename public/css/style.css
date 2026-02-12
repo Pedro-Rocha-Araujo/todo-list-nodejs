@@ -132,3 +132,10 @@ footer p {
     font-weight: bold;
     font-size: clamp(0.85rem, 2vw, 1.05rem);
 }
+
+@media screen and (max-width: 780px) {
+    header {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

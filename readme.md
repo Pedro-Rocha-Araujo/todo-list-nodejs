@@ -2,6 +2,12 @@
 ### O presente projeto foi desenvolvido com as seguintes tecnologias
 * HTML5 | CSS3 | Templates EJS
 * NodeJS | Express
+
+## Funcionalidades
+* Adcionar itens às respectivas listas
+* Editar e deletar os itens adcionados
+* Alternar entre as listas Padrão, faculdade e trabalho
+
 ### Como utilizar:
 1- Escolher uma pasta para rodar e abrir o terminal
 
@@ -10,8 +16,3 @@
 
 
 3- Digitar: node app.js
-
-## Funcionalidades
-* Adcionar itens às respectivas listas
-* Editar e deletar os itens adcionados
-* Alternar entre as listas Padrão, faculdade e trabalho
