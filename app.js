@@ -72,40 +72,6 @@ app.post("/", async (request, response)=>{
     }
 })
 
-app.get("/trabalho", async (request, response)=>{
-    const itens = await ModelItem.find({tipo: "trabalho"})
-    response.render("index", {
-        titulo: "Trabalho",
-        itens: itens
-    })
-})
-
-app.post("/trabalho", async (request, response)=>{
-    item = request.body.novoItem
-    const add = await ModelItem.insertOne({item})
-    response.redirect("/trabalho")
-})
-
-app.get("/faculdade", async (request, response)=>{
-    const itens = await ModelItem.find({tipo: "faculdade"})
-    response.render("index", {
-        titulo: "Faculdade",
-        itens: itens
-    })
-})
-
-app.post("/faculdade", async (request, response)=>{
-    let itemTexto = request.body.novoItem
-    try{
-        const add = await ModelItem.insertOne({texto: itemTexto, tipo: "faculdade"})
-    }catch(rerro){
-        console.log("Aconteceu algum erro!")
-    }
-    let item = request.body.novoItem
-    response.redirect("/faculdade")
-
-})
-
 app.post("/deletar", async (request, response)=>{
     let idDeletado = request.body.btndeletar
     try{
@@ -113,6 +79,26 @@ app.post("/deletar", async (request, response)=>{
         response.redirect("/")
     }catch(erro){
         console.log("Algum erro aconteceu!")
+    }
+})
+
+app.get("/:dinamica", async (request, response)=>{
+    let nomeRota = (request.params.dinamica).toLowerCase()
+    const itens = await ModelItem.find({tipo: nomeRota})
+    response.render("index", {
+        titulo: nomeRota,
+        itens: itens
+    })
+})
+
+app.post("/:dinamica", async (request, response)=>{
+    let nomeItem = request.body.novoItem
+    let rota = (request.params.dinamica).toLowerCase()
+    try{
+        const query = await ModelItem.insertOne({texto: nomeItem, tipo: rota})
+        response.redirect("/"+ rota)
+    }catch{
+        console.log("Erro")
     }
 })
 

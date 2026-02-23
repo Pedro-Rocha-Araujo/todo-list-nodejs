@@ -38,6 +38,7 @@ header a{
 h1 {
     text-align: center;
     font-size: clamp(2.9rem, 5vw, 3.5rem);
+    text-transform: capitalize;
 }
 
 form {
