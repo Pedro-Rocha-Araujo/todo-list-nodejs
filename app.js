@@ -72,11 +72,11 @@ app.post("/", async (request, response)=>{
     }
 })
 
-app.post("/deletar", async (request, response)=>{
+app.post("/deletar/:dinamica", async (request, response)=>{
     let idDeletado = request.body.btndeletar
     try{
         const deletar = await ModelItem.deleteOne({_id: idDeletado})
-        response.redirect("/")
+        response.redirect("/"+ request.params.dinamica)
     }catch(erro){
         console.log("Algum erro aconteceu!")
     }
