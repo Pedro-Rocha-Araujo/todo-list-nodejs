@@ -5,9 +5,10 @@
 * MongoDB | Mongoose
 
 ## Funcionalidades
-* Adcionar itens às respectivas listas
+* Adcionar itens às listas já existentes
 * Editar e deletar os itens adcionados
 * Alternar entre a listas Padrão, faculdade e trabalho
+* Adcionar Listas digitando o nome que deseja (Feito com rotas dinâmicas)
 
 ### Como utilizar:
 1- Escolher uma pasta para rodar e abrir o terminal
