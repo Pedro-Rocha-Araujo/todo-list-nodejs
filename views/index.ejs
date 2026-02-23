@@ -8,10 +8,10 @@
         </form>
         <div class="lista">
             <ul>
-                <% itens.map((_,i)=>{ %>
+                <% itens.forEach((_)=>{ %>
                     <div class="item">
                         <input type="checkbox">
-                        <li><%= _ %></li>
+                        <li><%= _.texto %></li>
                     </div>
                     <hr>
                 <% }) %>

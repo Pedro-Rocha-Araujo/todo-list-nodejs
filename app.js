@@ -1,73 +1,107 @@
 const express = require("express")
+const mongoose = require("mongoose")
 
 const app = express()
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
 app.set("view engine", "ejs")
+mongoose.connect("mongodb://127.0.0.1:27017/todolistDb")
 
-const itens = []
-const itensTrabalho = []
-const itensSobre = []
 
-app.get("/", (request, response)=>{
-    response.render("index", {
-        titulo: "Todo-List",
-        itens: itens
-    })
+
+
+
+const schemaItem = new mongoose.Schema({
+    texto: {type: String, required: true, maxLength: 200},
+    tipo: {type: String, required: true}
 })
 
-app.post("/", (request, response)=>{
-    let item = request.body.novoItem
+const ModelItem = mongoose.model("Item", schemaItem)
+
+
+
+
+
+
+app.get("/", async (request, response)=>{
+    try{
+        const itens = await ModelItem.find({tipo: "home"})
+        response.render("index", {
+            titulo: "Home",
+            itens: itens
+        })
+    }catch(erro){
+        console.log("Algo deu errado!")
+    }
+    
+})
+
+app.post("/", async (request, response)=>{
+    let itemTexto = request.body.novoItem
     switch (request.body.botao) {
-        case "Todo-List":
-            if(item !== ""){
-                itens.push(item)
-            }
+        case "Home":
+            try{
+                const add = await ModelItem.insertOne({texto: itemTexto, tipo: "home"})
+            }catch(erro){
+                console.log("Aconteceu algum erro!")
+            } 
             response.redirect("/")
-            break;
-        case "Trabalho":
-            if(item !== ""){
-                itensTrabalho.push(item)
+            break
+
+         case "Trabalho":
+            try{
+                const add = await ModelItem.insertOne({texto: itemTexto, tipo: "trabalho"})
+            }catch(erro){
+                console.log("Aconteceu algum erro!")
             }
             response.redirect("/trabalho")
             break;
-        case "Faculdade":
-            if(item !== ""){
-                itensSobre.push(item)
+
+         case "Faculdade":
+            try{
+                const add = await ModelItem.insertOne({texto: itemTexto, tipo: "faculdade"})
+            }catch(erro){
+                console.log("Aconteceu algum erro!")
             }
             response.redirect("/faculdade")
             break
+
         default:
             break;
     }
 })
 
-app.get("/trabalho", (request, response)=>{
+app.get("/trabalho", async (request, response)=>{
+    const itens = await ModelItem.find({tipo: "trabalho"})
     response.render("index", {
         titulo: "Trabalho",
-        itens: itensTrabalho
+        itens: itens
     })
 })
 
-app.post("/trabalho", (request, response)=>{
+app.post("/trabalho", async (request, response)=>{
     item = request.body.novoItem
-    if(item !== ""){
-        itensTrabalho.push(item)
-        response.redirect("/trabalho")
-    }
+    const add = await ModelItem.insertOne({item})
+    response.redirect("/trabalho")
 })
 
-app.get("/faculdade", (request, response)=>{
+app.get("/faculdade", async (request, response)=>{
+    const itens = await ModelItem.find({tipo: "faculdade"})
     response.render("index", {
         titulo: "Faculdade",
-        itens: itensSobre
+        itens: itens
     })
 })
 
-app.post("/faculdade", (request, response)=>{
+app.post("/faculdade", async (request, response)=>{
+    let itemTexto = request.body.novoItem
+    try{
+        const add = await ModelItem.insertOne({texto: itemTexto, tipo: "faculdade"})
+    }catch(rerro){
+        console.log("Aconteceu algum erro!")
+    }
     let item = request.body.novoItem
-    itensSobre.push(item)
     response.redirect("/faculdade")
 
 })
