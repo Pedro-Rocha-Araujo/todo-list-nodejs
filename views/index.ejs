@@ -12,6 +12,13 @@
                     <div class="item">
                         <input type="checkbox">
                         <li><%= _.texto %></li>
+                        <form action="/deletar" method="post">
+                            <button class="excluir" value="<%= _._id %>" name="btndeletar" type="submit">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            
+                        </form>
+                        
                     </div>
                     <hr>
                 <% }) %>

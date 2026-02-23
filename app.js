@@ -106,6 +106,15 @@ app.post("/faculdade", async (request, response)=>{
 
 })
 
+app.post("/deletar", async (request, response)=>{
+    let idDeletado = request.body.btndeletar
+    try{
+        const deletar = await ModelItem.deleteOne({_id: idDeletado})
+        response.redirect("/")
+    }catch(erro){
+        console.log("Algum erro aconteceu!")
+    }
+})
 
 
 app.listen(3000, ()=>{

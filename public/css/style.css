@@ -93,6 +93,15 @@ ul {
 div.item {
     display: flex;
     align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+div.item form{
+    width: auto;
+    position: absolute;
+    top: -10px;
+    right: -14px;
 }
 
 input[type="checkbox"] {
@@ -108,8 +117,14 @@ input:checked+li {
 li {
     color: #1e4daf;
     text-align: left;
+    width: 84%;
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     word-break: break-word;
+}
+
+button.excluir {
+    background-color: transparent;
+    color: #000;
 }
 
 hr {
